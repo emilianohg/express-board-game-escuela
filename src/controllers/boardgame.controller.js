@@ -13,8 +13,6 @@ exports.create = (req, res) => {
 
     boardgameRepository.create(_boardgame)
     .then(data => {
-        console.log('data');
-        console.log(data);
         return res.json({
             message: 'Boardgame created successfuly',
             data: data,
@@ -66,7 +64,6 @@ exports.update = (req, res) => {
     const _boardgame = req.body;
 
     const errors = validateRequestUpdate(_boardgame);
-    console.log(errors);
 
     if (errors.length > 0) {
         return res.status(422).json({
@@ -126,7 +123,7 @@ const validateRequestCreate = (_boardgame) => {
     if(_boardgame.publisher.length > 60) {
         errors.push('Field publisher is too long, maximum length is 60 characters');
     }
-    if(_boardgame.category.length > 2) {
+    if(_boardgame.category.toString().length > 2) {
         errors.push('Field category is too long, maximum length is 2 characters');
     }
     if(_boardgame.description.length > 200) {
@@ -150,7 +147,7 @@ const validateRequestUpdate = (_boardgame) => {
     if(_boardgame.publisher.length > 60) {
         errors.push('Field publisher is too long, maximum length is 60 characters');
     }
-    if(_boardgame.category.length > 2) {
+    if(_boardgame.category.toString().length > 2) {
         errors.push('Field category is too long, maximum length is 2 characters');
     }
     if(_boardgame.description.length > 200) {

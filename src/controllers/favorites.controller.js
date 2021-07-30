@@ -30,7 +30,12 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    favoritesRepository.findAll()
+    
+    const { category } = req.query;
+
+    console.log('controller', category);
+
+    favoritesRepository.findAll(category)
         .then(data => {
             return res.json({
                 message: null,

@@ -3,20 +3,28 @@ const { connection } = require('../database/database');
 /**
  * @return Promise
  */
-exports.findAll = async () => {
+exports.findAll = async (category = null) => {
     return new Promise((resolve, reject) => {
-        const statement = `
+        let statement = `
             SELECT
-               boardgames.id,
+               favorites.id,
                name,
                publisher,
                category,
-               description,
-               year,
-               (favorites.id IS NOT NULL) AS is_favorite
+               year
             FROM boardgames
-            INNER JOIN favorites on boardgames.id = favorites.boardgame_id;
+            INNER JOIN favorites on boardgames.id = favorites.boardgame_id
         `;
+
+        console.log('repo category', category);
+
+        if (category != null && category != 'null') {
+            console.log('numero ', Number.isInteger(+category))
+            statement += ` WHERE category = ${category}`;
+        }
+
+        console.log(statement);
+
         connection().query(statement, (err, data) => {
             if(err) {
                 reject({err});

@@ -1,6 +1,8 @@
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
 
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
@@ -10,12 +12,6 @@ require('./routes/favorites.routes')(app);
 
 app.get('/', (req, res) => {
     res.json({ping: 'pong'});
-});
-
-app.use((error, req, res, next) => {
-    res.status(404).json({
-        message: 'Endpoint not found',
-    });
 });
 
 app.listen(3000, () => {

@@ -6,7 +6,7 @@ create table boardgames
 	id int auto_increment,
 	name varchar(80) not null,
 	publisher varchar(60) not null,
-	category varchar(2) not null,
+	category int not null,
 	description varchar(200) null,
 	year int null,
 	constraint boardgames_pk
