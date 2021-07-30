@@ -3,5 +3,6 @@ module.exports = {
     "port": 3306,
     "user": "root",
     "password": "password",
-    "database": "boardgame"
+    "database": "boardgame",
+    "multipleStatements": true
 }

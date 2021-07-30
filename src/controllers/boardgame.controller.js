@@ -126,10 +126,10 @@ const validateRequestCreate = (_boardgame) => {
     if(_boardgame.category.toString().length > 2) {
         errors.push('Field category is too long, maximum length is 2 characters');
     }
-    if(_boardgame.description.length > 200) {
+    if(_boardgame.description?.length > 200) {
         errors.push('Field description is too long, maximum length is 200 characters');
     }
-    if(_boardgame.year.toString().length !== 4) {
+    if(_boardgame.year != null && _boardgame.year != undefined && _boardgame.year?.toString()?.length !== 4) {
         errors.push('Field year must be in YYYY format');
     }
     return errors;
@@ -150,10 +150,10 @@ const validateRequestUpdate = (_boardgame) => {
     if(_boardgame.category.toString().length > 2) {
         errors.push('Field category is too long, maximum length is 2 characters');
     }
-    if(_boardgame.description.length > 200) {
+    if(_boardgame.description?.length > 200) {
         errors.push('Field description is too long, maximum length is 200 characters');
     }
-    if(_boardgame.year.toString().length !== 4) {
+    if(_boardgame.year != null && _boardgame.year != undefined && _boardgame.year?.toString()?.length !== 4) {
         errors.push('Field year must be in YYYY format');
     }
     return errors;

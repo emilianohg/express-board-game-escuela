@@ -49,6 +49,9 @@ exports.find = async (id) => {
             if(err) {
                 reject({err});
             }
+            if (data.length > 0) {
+                return resolve(data[0]);
+            }
             return resolve(data);
         });
     });
@@ -112,8 +115,11 @@ exports.update = async (id, {
  */
 exports.delete = async (id) => {
     return new Promise((resolve, reject) => {
-        const statement = 'DELETE FROM boardgames WHERE id = ?';
-        connection().query(statement, [id], (err, data) => {
+        const statement = `
+            DELETE FROM favorites WHERE boardgame_id = ?;
+            DELETE FROM boardgames WHERE id = ?;
+        `;
+        connection().query(statement, [id, id], (err, data) => {
             if(err) {
                 reject({err});
             }
