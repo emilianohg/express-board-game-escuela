@@ -100,7 +100,6 @@ exports.update = async (id, {
     return new Promise((resolve, reject) => {
         const statement = 'UPDATE boardgames SET publisher = ?, category = ?, description = ?, year = ? WHERE id = ?';
         connection().query(statement, [publisher, category, description, year, id], (err, data) => {
-            console.log(err, data);
             if(err) {
                 reject({err});
             }

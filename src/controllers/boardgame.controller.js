@@ -72,8 +72,6 @@ exports.update = (req, res) => {
         });
     }
 
-    console.log(_boardgame);
-
     boardgameRepository.update(id, _boardgame)
         .then(_ => {
             return res.json({

@@ -16,14 +16,9 @@ exports.findAll = async (category = null) => {
             INNER JOIN favorites on boardgames.id = favorites.boardgame_id
         `;
 
-        console.log('repo category', category);
-
         if (category != null && category != 'null') {
-            console.log('numero ', Number.isInteger(+category))
             statement += ` WHERE category = ${category}`;
         }
-
-        console.log(statement);
 
         connection().query(statement, (err, data) => {
             if(err) {

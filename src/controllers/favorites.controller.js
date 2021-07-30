@@ -3,8 +3,6 @@ const favoritesRepository = require('../repositories/favorites');
 exports.create = (req, res) => {
     const { id } = req.body;
 
-    console.log(id);
-
     if (!id) {
         return res.status(422).json({
             message: 'Something was wrong',
@@ -14,8 +12,6 @@ exports.create = (req, res) => {
 
     favoritesRepository.create(id)
         .then(data => {
-            console.log('data');
-            console.log(data);
             return res.json({
                 message: 'Board game added to favorites',
                 data: data,
@@ -32,8 +28,6 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     
     const { category } = req.query;
-
-    console.log('controller', category);
 
     favoritesRepository.findAll(category)
         .then(data => {
